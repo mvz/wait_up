@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'wait_up'
+
+Gtk.init
+
+WaitUp::Application.new
+
+Gtk.main
