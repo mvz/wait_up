@@ -36,6 +36,16 @@ module WaitUp
 
     def setup_gui
       @win = Gtk::Window.new :toplevel
+      @grid = Gtk::Grid.new
+      @grid.orientation = :vertical
+      @win.add @grid
+      @chooser = Gtk::FileChooserButton.new('Hello!', :open)
+      @grid.add @chooser
+      @timeline = Gtk::Scale.new_with_range :horizontal, 0.0, 10.0, 0.1
+      @timeline.hexpand = true
+      @grid.add @timeline
+      @volume = Gtk::VolumeButton.new
+      @grid.add @volume
     end
   end
 end
