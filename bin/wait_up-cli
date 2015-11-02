@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require_relative '../lib/wait_up/pipeline'
+
+unless ARGV.length == 2
+  warn 'Usage: wait_up-cli [file] [tempo]'
+  exit 1
+end
+filename = ARGV[0]
+tempo = ARGV[1].to_f
+
+Gst.init []
+
+WaitUp::Pipeline.new(filename, tempo).play
