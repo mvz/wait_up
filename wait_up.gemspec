@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rake', ['~> 10.1'])
   s.add_development_dependency('minitest', ['~> 5.5'])
   s.add_development_dependency('atspi_app_driver', ['0.0.3'])
+  s.add_development_dependency('pry', ['~> 0.10.2'])
 end

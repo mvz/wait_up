@@ -15,5 +15,15 @@ module WaitUp
     def play
       puts "Playing #{filename} at tempo #{tempo}"
     end
+
+    def pipeline
+      @pipeline ||= Gst::Pipeline.new 'pipeline'
+    end
+
+    def source
+      @source ||= Gst::ElementFactory.make('filesrc', 'source').tap do |element|
+        element.set_property 'location', filename
+      end
+    end
   end
 end
