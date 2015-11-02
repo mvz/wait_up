@@ -15,6 +15,7 @@ module WaitUp
       connect_key_press_event_signal
       connect_destroy_signal
       connect_slide_signal
+      connect_file_chooser_signal
     end
 
     def connect_destroy_signal
@@ -38,6 +39,12 @@ module WaitUp
     def connect_slide_signal
       @timeline.signal_connect 'format-value' do |_scale, value, _user_data|
         ">#{value}<"
+      end
+    end
+
+    def connect_file_chooser_signal
+      @chooser.signal_connect 'file-set' do |_widget, _user_data|
+        puts @chooser.filename
       end
     end
 
