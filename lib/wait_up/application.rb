@@ -14,6 +14,7 @@ module WaitUp
     def connect_signals
       connect_key_press_event_signal
       connect_destroy_signal
+      connect_slide_signal
     end
 
     def connect_destroy_signal
@@ -31,6 +32,12 @@ module WaitUp
       case evt.keyval
       when 'q'.ord
         @win.destroy
+      end
+    end
+
+    def connect_slide_signal
+      @timeline.signal_connect 'format-value' do |_scale, value, _user_data|
+        ">#{value}<"
       end
     end
 
