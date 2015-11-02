@@ -25,5 +25,11 @@ module WaitUp
         element.set_property 'location', filename
       end
     end
+
+    def speed_changer
+      @speed_changer ||= Gst::ElementFactory.make('pitch', 'speed changer').tap do |element|
+        element.set_property 'tempo', tempo
+      end
+    end
   end
 end

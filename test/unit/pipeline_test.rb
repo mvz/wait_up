@@ -21,4 +21,15 @@ describe WaitUp::Pipeline do
       source.get_property("location").get_value.must_equal 'file'
     end
   end
+
+  describe '#speed_changer' do
+    let(:speed_changer) { instance.speed_changer }
+    it 'returns a Gst::Element' do
+      speed_changer.must_be_kind_of Gst::Element
+    end
+
+    it 'has the correct tempo' do
+      speed_changer.get_property("tempo").get_value.must_be_close_to 0.9
+    end
+  end
 end
