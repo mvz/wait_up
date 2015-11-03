@@ -5,9 +5,21 @@ Gst.init []
 
 describe WaitUp::Pipeline do
   let(:instance) { WaitUp::Pipeline.new 'file', 0.9 }
+
   describe '#pipeline' do
+    let(:pipeline) { instance.pipeline }
+
     it 'returns a Gst::Pipeline' do
-      instance.pipeline.must_be_instance_of Gst::Pipeline
+      pipeline.must_be_instance_of Gst::Pipeline
+    end
+
+    it 'has the correct build-up' do
+      iter = pipeline.iterate_elements
+
+      # TODO: Implement Ruby interface
+      result, value = iter.next
+      result.must_equal :ok
+      value.get_value.name.must_equal 'source'
     end
   end
 

@@ -17,7 +17,9 @@ module WaitUp
     end
 
     def pipeline
-      @pipeline ||= Gst::Pipeline.new 'pipeline'
+      @pipeline ||= Gst::Pipeline.new('pipeline').tap do |bin|
+        bin.add source
+      end
     end
 
     def source
