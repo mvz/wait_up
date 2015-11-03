@@ -30,7 +30,9 @@ describe WaitUp::Pipeline do
       iter = pipeline.iterate_elements
 
       values = iter.to_a
-      values.first.name.must_equal 'source'
+      values.reverse.map(&:get_name).must_equal [
+        'source', 'decoder', 'preconverter', 'preresampler',
+        'speed changer', 'postconverter', 'postresampler', 'sink']
     end
   end
 

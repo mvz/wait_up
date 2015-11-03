@@ -2,6 +2,16 @@ require 'gir_ffi'
 
 GirFFI.setup :Gst
 
+module Gst
+  load_class :Bin
+
+  class Bin
+    def add_many(*elements)
+      elements.each { |element| add element }
+    end
+  end
+end
+
 module WaitUp
   # Wait Up pipeline class
   class Pipeline
@@ -18,7 +28,7 @@ module WaitUp
 
     def pipeline
       @pipeline ||= Gst::Pipeline.new('pipeline').tap do |bin|
-        bin.add source
+        bin.add_many(*elements)
       end
     end
 
@@ -32,6 +42,20 @@ module WaitUp
       @speed_changer ||= Gst::ElementFactory.make('pitch', 'speed changer').tap do |element|
         element.set_property 'tempo', tempo
       end
+    end
+
+    private
+
+    def elements
+      @elements ||= [
+        source,
+        Gst::ElementFactory.make('decodebin', 'decoder'),
+        Gst::ElementFactory.make('audioconvert', 'preconverter'),
+        Gst::ElementFactory.make('audioresample', 'preresampler'),
+        speed_changer,
+        Gst::ElementFactory.make('audioconvert', 'postconverter'),
+        Gst::ElementFactory.make('audioresample', 'postresampler'),
+        Gst::ElementFactory.make('osssink', 'sink') ]
     end
   end
 end
