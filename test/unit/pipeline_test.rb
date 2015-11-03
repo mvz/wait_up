@@ -3,6 +3,19 @@ require_relative '../../lib/wait_up/pipeline'
 
 Gst.init []
 
+# TODO: Extract to a gem
+module Gst
+  load_class :Iterator
+  class Iterator
+    include Enumerable
+
+    def each
+      prc = proc { |item, _ud| yield item.get_value }
+      foreach(prc, nil)
+    end
+  end
+end
+
 describe WaitUp::Pipeline do
   let(:instance) { WaitUp::Pipeline.new 'file', 0.9 }
 
@@ -16,10 +29,8 @@ describe WaitUp::Pipeline do
     it 'has the correct build-up' do
       iter = pipeline.iterate_elements
 
-      # TODO: Implement Ruby interface
-      result, value = iter.next
-      result.must_equal :ok
-      value.get_value.name.must_equal 'source'
+      values = iter.to_a
+      values.first.name.must_equal 'source'
     end
   end
 
