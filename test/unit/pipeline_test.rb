@@ -45,6 +45,11 @@ describe WaitUp::Pipeline do
     it 'has the correct location' do
       source.get_property("location").get_value.must_equal 'file'
     end
+
+    it 'is linked to the decoder' do
+      # FIXME: Reduce the number of necessary chained calls here.
+      source.iterate_src_pads.to_a.first.get_peer.parent.get_name.must_equal 'decoder'
+    end
   end
 
   describe '#speed_changer' do

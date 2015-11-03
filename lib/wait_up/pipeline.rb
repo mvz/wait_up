@@ -20,6 +20,8 @@ module WaitUp
     def initialize(filename, tempo)
       @filename = filename
       @tempo = tempo
+      pipeline.add_many(*elements)
+      source.link elements[1]
     end
 
     def play
@@ -27,9 +29,7 @@ module WaitUp
     end
 
     def pipeline
-      @pipeline ||= Gst::Pipeline.new('pipeline').tap do |bin|
-        bin.add_many(*elements)
-      end
+      @pipeline ||= Gst::Pipeline.new('pipeline')
     end
 
     def source
