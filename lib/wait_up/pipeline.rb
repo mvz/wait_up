@@ -2,11 +2,27 @@ require 'gir_ffi'
 
 GirFFI.setup :Gst
 
+# TODO: Extract to a gem
 module Gst
+  load_class :Element
+
+  class Element
+    def link_many(elements)
+      return true if elements.empty?
+      first, *rest = elements
+      if link(first)
+        first.link_many(rest)
+      else
+        warn "Linking #{get_name} with #{first.get_name} failed"
+        false
+      end
+    end
+  end
+
   load_class :Bin
 
   class Bin
-    def add_many(*elements)
+    def add_many(elements)
       elements.each { |element| add element }
     end
   end
@@ -20,8 +36,11 @@ module WaitUp
     def initialize(filename, tempo)
       @filename = filename
       @tempo = tempo
-      pipeline.add_many(*elements)
-      source.link elements[1]
+      pipeline.add_many(elements)
+      source.link decoder
+      pipeline.set_state :paused
+      pipeline.get_state(-1)
+      decoder.link_many elements[2..-1]
     end
 
     def play
@@ -44,18 +63,22 @@ module WaitUp
       end
     end
 
+    def decoder
+      @decoder ||= Gst::ElementFactory.make('decodebin', 'decoder')
+    end
+
     private
 
     def elements
       @elements ||= [
         source,
-        Gst::ElementFactory.make('decodebin', 'decoder'),
+        decoder,
         Gst::ElementFactory.make('audioconvert', 'preconverter'),
         Gst::ElementFactory.make('audioresample', 'preresampler'),
         speed_changer,
         Gst::ElementFactory.make('audioconvert', 'postconverter'),
         Gst::ElementFactory.make('audioresample', 'postresampler'),
-        Gst::ElementFactory.make('osssink', 'sink') ]
+        Gst::ElementFactory.make('pulsesink', 'sink') ]
     end
   end
 end

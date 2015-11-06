@@ -16,8 +16,17 @@ module Gst
   end
 end
 
+def next_element(element)
+  # FIXME: Reduce the number of necessary chained calls here.
+  pad = element.iterate_src_pads.first
+  peer = pad.get_peer if pad
+  peer.parent if peer
+end
+
 describe WaitUp::Pipeline do
-  let(:instance) { WaitUp::Pipeline.new 'file', 0.9 }
+  # Empty mp3 file from http://www.xamuel.com/blank-mp3s/
+  let(:filename) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'point1sec.mp3') }
+  let(:instance) { WaitUp::Pipeline.new filename, 0.9 }
 
   describe '#pipeline' do
     let(:pipeline) { instance.pipeline }
@@ -30,9 +39,20 @@ describe WaitUp::Pipeline do
       iter = pipeline.iterate_elements
 
       values = iter.to_a
+      # TODO: Make #name work, too
       values.reverse.map(&:get_name).must_equal [
         'source', 'decoder', 'preconverter', 'preresampler',
         'speed changer', 'postconverter', 'postresampler', 'sink']
+    end
+
+    it 'has the elements all linked up' do
+      iter = pipeline.iterate_elements
+
+      values = iter.to_a
+      values.reverse.each_cons(2) do |src, dst|
+        next_element(src).must_equal dst,
+          "Expected #{src.get_name} to link up to #{dst.get_name}"
+      end
     end
   end
 
@@ -43,12 +63,11 @@ describe WaitUp::Pipeline do
     end
 
     it 'has the correct location' do
-      source.get_property("location").get_value.must_equal 'file'
+      source.get_property("location").get_value.must_equal filename
     end
 
     it 'is linked to the decoder' do
-      # FIXME: Reduce the number of necessary chained calls here.
-      source.iterate_src_pads.to_a.first.get_peer.parent.get_name.must_equal 'decoder'
+      next_element(source).get_name.must_equal 'decoder'
     end
   end
 
