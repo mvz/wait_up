@@ -81,4 +81,22 @@ describe WaitUp::Pipeline do
       speed_changer.get_property("tempo").get_value.must_be_close_to 0.9
     end
   end
+
+  describe '#initialize' do
+    it 'leaves all elements in a succesful state' do
+      instance.elements.each do |element|
+        state = element.get_state(0)
+        state.first.must_equal :success,
+          "Expected #{element.get_name} to have succesful state, but was #{state}"
+      end
+    end
+
+    it 'leaves all elements either paused or ready' do
+      instance.elements.each do |element|
+        state = element.get_state(0)
+        [:ready, :paused].must_include state[1],
+          "Expected #{element.get_name} to be ready or paused but state was #{state}"
+      end
+    end
+  end
 end

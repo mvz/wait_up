@@ -38,9 +38,14 @@ module WaitUp
       @tempo = tempo
       pipeline.add_many(elements)
       source.link decoder
-      pipeline.set_state :paused
+      pipeline.set_state :ready
       pipeline.get_state(-1)
+      source.set_state :paused
+      decoder.set_state :paused
+      decoder.get_state(-1)
       decoder.link_many elements[2..-1]
+      decoder.set_state :paused
+      decoder.get_state(-1)
     end
 
     def play
@@ -67,18 +72,20 @@ module WaitUp
       @decoder ||= Gst::ElementFactory.make('decodebin', 'decoder')
     end
 
-    private
-
     def elements
       @elements ||= [
         source,
         decoder,
-        Gst::ElementFactory.make('audioconvert', 'preconverter'),
+        preconverter,
         Gst::ElementFactory.make('audioresample', 'preresampler'),
         speed_changer,
         Gst::ElementFactory.make('audioconvert', 'postconverter'),
         Gst::ElementFactory.make('audioresample', 'postresampler'),
         Gst::ElementFactory.make('pulsesink', 'sink') ]
+    end
+
+    def preconverter
+      @preconverter ||= Gst::ElementFactory.make('audioconvert', 'preconverter')
     end
   end
 end
