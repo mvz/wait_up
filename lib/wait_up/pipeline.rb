@@ -26,7 +26,7 @@ module WaitUp
     end
 
     def play
-      puts "Playing #{filename} at tempo #{tempo}"
+      play_bin.set_state :playing
     end
 
     def play_bin

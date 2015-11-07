@@ -67,4 +67,11 @@ describe WaitUp::Pipeline do
       speed_changer.get_property("tempo").get_value.must_be_close_to 0.9
     end
   end
+
+  describe '#play' do
+    it "sets the play bin's state to :playing" do
+      instance.play
+      instance.play_bin.get_state(0)[1].must_equal :playing
+    end
+  end
 end
