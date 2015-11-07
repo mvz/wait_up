@@ -8,30 +8,33 @@ module WaitUp
     def initialize(filename, tempo)
       @filename = filename
       @tempo = tempo
-      pipeline.add_many(elements)
-      source.link decoder
-      pipeline.set_state :ready
-      pipeline.get_state(-1)
-      source.set_state :paused
-      decoder.set_state :paused
-      decoder.get_state(-1)
-      decoder.link_many elements[2..-1]
-      decoder.set_state :paused
-      decoder.get_state(-1)
+
+      play_bin.set_property 'uri', "file://#{File.absolute_path(filename)}"
+
+      sink_bin.add audiosink
+      sink_bin.add postconverter
+      sink_bin.add speed_changer
+
+      speed_changer.link_many [postconverter, audiosink]
+
+      sink_pad = Gst::GhostPad.new 'sink', speed_changer.iterate_sink_pads.first
+      sink_bin.add_pad sink_pad
+
+      play_bin.set_property 'audio-sink', GObject::Value.wrap_instance(sink_bin)
+      play_bin.set_state :paused
+      play_bin.get_state(-1)
     end
 
     def play
       puts "Playing #{filename} at tempo #{tempo}"
     end
 
-    def pipeline
-      @pipeline ||= Gst::Pipeline.new('pipeline')
+    def play_bin
+      @play_bin ||= Gst::ElementFactory.make 'playbin', nil
     end
 
-    def source
-      @source ||= Gst::ElementFactory.make('filesrc', 'source').tap do |element|
-        element.set_property 'location', filename
-      end
+    def sink_bin
+      @sink_bin ||= Gst::Bin.new('sinkbin')
     end
 
     def speed_changer
@@ -40,18 +43,12 @@ module WaitUp
       end
     end
 
-    def decoder
-      @decoder ||= Gst::ElementFactory.make('decodebin', 'decoder')
+    def audiosink
+      @audiosink ||= Gst::ElementFactory.make('autoaudiosink', 'audiosink')
     end
 
-    def elements
-      @elements ||= [
-        source,
-        decoder,
-        preconverter,
-        speed_changer,
-        Gst::ElementFactory.make('audioconvert', 'postconverter'),
-        Gst::ElementFactory.make('autoaudiosink', 'audiosink') ]
+    def postconverter
+      @postconverter ||= Gst::ElementFactory.make('audioconvert', 'postconverter')
     end
 
     def preconverter

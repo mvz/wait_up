@@ -15,46 +15,46 @@ describe WaitUp::Pipeline do
   let(:filename) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'point1sec.mp3') }
   let(:instance) { WaitUp::Pipeline.new filename, 0.9 }
 
-  describe '#pipeline' do
-    let(:pipeline) { instance.pipeline }
+  describe '#sink_bin' do
+    let(:sink_bin) { instance.sink_bin }
 
-    it 'returns a Gst::Pipeline' do
-      pipeline.must_be_instance_of Gst::Pipeline
+    it 'returns a Gst::Bin' do
+      sink_bin.must_be_instance_of Gst::Bin
     end
 
     it 'has the correct build-up' do
-      iter = pipeline.iterate_elements
+      iter = sink_bin.iterate_elements
 
-      values = iter.to_a
       # TODO: Make #name work, too
-      values.reverse.map(&:get_name).must_equal [
-        'source', 'decoder', 'preconverter', 'speed changer', 'postconverter', 'audiosink']
+      iter.map(&:get_name).must_equal ['speed changer', 'postconverter', 'audiosink']
     end
 
     it 'has the elements all linked up' do
-      iter = pipeline.iterate_elements
+      iter = sink_bin.iterate_elements
 
-      values = iter.to_a
-      values.reverse.each_cons(2) do |src, dst|
+      iter.to_a.each_cons(2) do |src, dst|
         next_element(src).must_equal dst,
           "Expected #{src.get_name} to link up to #{dst.get_name}"
       end
     end
+
+    it 'must have the state :paused' do
+      sink_bin.get_state(0)[1].must_equal :paused
+    end
+
+    it 'must be linked up to a source' do
+      sink_bin.iterate_sink_pads.first.get_peer.wont_be_nil
+    end
   end
 
-  describe '#source' do
-    let(:source) { instance.source }
-    it 'returns a Gst::Element' do
-      source.must_be_kind_of Gst::Element
+  describe '#play_bin' do
+    let(:play_bin) { instance.play_bin }
+
+    it 'must have the state :paused' do
+      play_bin.get_state(0)[1].must_equal :paused
     end
 
-    it 'has the correct location' do
-      source.get_property("location").get_value.must_equal filename
-    end
-
-    it 'is linked to the decoder' do
-      next_element(source).get_name.must_equal 'decoder'
-    end
+    # TODO: Make #get_property work and test properties
   end
 
   describe '#speed_changer' do
@@ -65,24 +65,6 @@ describe WaitUp::Pipeline do
 
     it 'has the correct tempo' do
       speed_changer.get_property("tempo").get_value.must_be_close_to 0.9
-    end
-  end
-
-  describe '#initialize' do
-    it 'leaves all elements in a succesful state' do
-      instance.elements.each do |element|
-        state = element.get_state(0)
-        state.first.must_equal :success,
-          "Expected #{element.get_name} to have succesful state, but was #{state}"
-      end
-    end
-
-    it 'leaves all elements either paused or ready' do
-      instance.elements.each do |element|
-        state = element.get_state(0)
-        [:ready, :paused].must_include state[1],
-          "Expected #{element.get_name} to be ready or paused but state was #{state}"
-      end
     end
   end
 end
