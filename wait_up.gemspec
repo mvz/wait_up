@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ['matijs@matijs.net']
   s.homepage = 'http://www.github.com/mvz/wait_up'
 
-  s.executables = ['wait_up']
+  s.executables = ['wait_up', 'wait_up-cli']
   s.files =
     Dir['bin/*', '*.md', 'LICENSE', 'Rakefile', 'Gemfile', 'lib/**/*.rb'] &
       `git ls-files -z`.split("\0")
