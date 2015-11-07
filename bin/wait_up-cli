@@ -10,4 +10,21 @@ tempo = ARGV[1].to_f
 
 Gst.init []
 
-WaitUp::Pipeline.new(filename, tempo).play
+pipeline = WaitUp::Pipeline.new(filename, tempo)
+mainloop = GLib::MainLoop.new(GLib::MainContext.default, true)
+
+bus = pipeline.play_bin.bus
+bus.add_signal_watch
+
+bus.signal_connect 'message' do |_bus, message, _ud|
+  case message.type
+  when :error
+    mainloop.quit
+  when :eos
+    mainloop.quit
+  end
+end
+
+pipeline.play
+
+mainloop.run
