@@ -3,19 +3,6 @@ require_relative '../../lib/wait_up/pipeline'
 
 Gst.init []
 
-# TODO: Extract to a gem
-module Gst
-  load_class :Iterator
-  class Iterator
-    include Enumerable
-
-    def each
-      prc = proc { |item, _ud| yield item.get_value }
-      foreach(prc, nil)
-    end
-  end
-end
-
 def next_element(element)
   # FIXME: Reduce the number of necessary chained calls here.
   pad = element.iterate_src_pads.first

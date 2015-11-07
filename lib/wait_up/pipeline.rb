@@ -1,32 +1,4 @@
-require 'gir_ffi'
-
-GirFFI.setup :Gst
-
-# TODO: Extract to a gem
-module Gst
-  load_class :Element
-
-  class Element
-    def link_many(elements)
-      return true if elements.empty?
-      first, *rest = elements
-      if link(first)
-        first.link_many(rest)
-      else
-        warn "Linking #{get_name} with #{first.get_name} failed"
-        false
-      end
-    end
-  end
-
-  load_class :Bin
-
-  class Bin
-    def add_many(elements)
-      elements.each { |element| add element }
-    end
-  end
-end
+require 'gir_ffi-gst'
 
 module WaitUp
   # Wait Up pipeline class
