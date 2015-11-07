@@ -41,8 +41,7 @@ describe WaitUp::Pipeline do
       values = iter.to_a
       # TODO: Make #name work, too
       values.reverse.map(&:get_name).must_equal [
-        'source', 'decoder', 'preconverter', 'preresampler',
-        'speed changer', 'postconverter', 'postresampler', 'sink']
+        'source', 'decoder', 'preconverter', 'speed changer', 'postconverter', 'audiosink']
     end
 
     it 'has the elements all linked up' do

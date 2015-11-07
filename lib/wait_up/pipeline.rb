@@ -77,11 +77,9 @@ module WaitUp
         source,
         decoder,
         preconverter,
-        Gst::ElementFactory.make('audioresample', 'preresampler'),
         speed_changer,
         Gst::ElementFactory.make('audioconvert', 'postconverter'),
-        Gst::ElementFactory.make('audioresample', 'postresampler'),
-        Gst::ElementFactory.make('pulsesink', 'sink') ]
+        Gst::ElementFactory.make('autoaudiosink', 'audiosink') ]
     end
 
     def preconverter
