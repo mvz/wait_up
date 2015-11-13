@@ -54,7 +54,10 @@ describe WaitUp::Pipeline do
       play_bin.get_state(0)[1].must_equal :paused
     end
 
-    # TODO: Make #get_property work and test properties
+    it 'has the correct source set up' do
+      source = play_bin.get_property('source').get_value
+      source.uri.must_equal "file://#{File.absolute_path filename}"
+    end
   end
 
   describe '#speed_changer' do
