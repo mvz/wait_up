@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('gir_ffi-gtk', ['~> 0.8.0'])
   s.add_dependency('gir_ffi-gst', ['~> 0.0.1'])
-  s.add_dependency('gir_ffi', ['~> 0.8.3.pre1'])
+  s.add_dependency('gir_ffi', ['~> 0.8.3'])
   s.add_development_dependency('rake', ['~> 10.1'])
   s.add_development_dependency('minitest', ['~> 5.5'])
   s.add_development_dependency('atspi_app_driver', ['0.0.3'])
