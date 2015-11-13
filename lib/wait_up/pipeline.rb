@@ -1,22 +1,5 @@
 require 'gir_ffi-gst'
 
-module Gst
-  load_class :ChildProxy
-
-  # TODO: Move to gir_ffi-gst
-  module ChildProxy
-    setup_instance_method :get_property
-
-    def get_property(name)
-      pspec = type_class.find_property name
-      _v1 = GirFFI::InPointer.from(:utf8, name)
-      _v2 = GObject::Value.for_gtype pspec.value_type
-      Gst::Lib.gst_child_proxy_get_property self, _v1, _v2
-      return _v2
-    end
-  end
-end
-
 module WaitUp
   # Wait Up pipeline class
   class Pipeline
