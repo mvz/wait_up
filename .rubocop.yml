@@ -2,6 +2,10 @@
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
+# Require lines to fit in pull requests.
+Metrics/LineLength:
+  Max: 92
+
 # Allow and/or for control flow only
 Style/AndOr:
   EnforcedStyle: conditionals
@@ -35,6 +39,8 @@ Style/RedundantReturn:
 Style/SignalException:
   EnforcedStyle: only_raise
 
-# Accessors are only trivial if they match the ivar name
+# Accessors are only trivial if they match the ivar name.
 Style/TrivialAccessors:
   ExactNameMatch: true
+
+inherit_from: .rubocop_todo.yml

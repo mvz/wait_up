@@ -33,8 +33,8 @@ describe WaitUp::Pipeline do
       iter = sink_bin.iterate_elements
 
       iter.to_a.each_cons(2) do |src, dst|
-        next_element(src).must_equal dst,
-          "Expected #{src.get_name} to link up to #{dst.get_name}"
+        next_element(src).
+          must_equal dst, "Expected #{src.get_name} to link up to #{dst.get_name}"
       end
     end
 
@@ -67,7 +67,7 @@ describe WaitUp::Pipeline do
     end
 
     it 'has the correct tempo' do
-      speed_changer.get_property("tempo").get_value.must_be_close_to 0.9
+      speed_changer.get_property('tempo').get_value.must_be_close_to 0.9
     end
   end
 
