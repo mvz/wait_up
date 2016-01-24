@@ -18,11 +18,11 @@ Gem::Specification.new do |s|
 
   s.license = 'MIT'
 
-  s.add_dependency('gir_ffi-gtk', ['~> 0.8.0'])
-  s.add_dependency('gir_ffi-gst', ['0.0.2'])
-  s.add_dependency('gir_ffi', ['~> 0.8.3'])
+  s.add_dependency('gir_ffi-gtk', ['~> 0.9.0'])
+  s.add_dependency('gir_ffi-gst', ['0.0.4'])
+  s.add_dependency('gir_ffi', ['~> 0.9.0'])
   s.add_development_dependency('rake', ['~> 10.1'])
   s.add_development_dependency('minitest', ['~> 5.5'])
-  s.add_development_dependency('atspi_app_driver', ['0.0.3'])
+  s.add_development_dependency('atspi_app_driver', ['0.0.4'])
   s.add_development_dependency('pry', ['~> 0.10.2'])
 end

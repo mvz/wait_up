@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require_relative '../../lib/wait_up/pipeline'
 
-Gst.init []
+Gst.init
 
 def next_element(element)
   # FIXME: Reduce the number of necessary chained calls here.
@@ -24,7 +24,8 @@ describe WaitUp::Pipeline do
 
     it 'has the correct build-up' do
       iter = sink_bin.iterate_elements
-      iter.map(&:name).must_equal ['speed changer', 'postconverter', 'audiosink']
+      # TODO: Make #name return the right value for audiosink
+      iter.map(&:get_name).must_equal ['speed changer', 'postconverter', 'audiosink']
     end
 
     it 'has the elements all linked up' do
@@ -65,7 +66,7 @@ describe WaitUp::Pipeline do
     end
 
     it 'has the correct tempo' do
-      speed_changer.get_property('tempo').get_value.must_be_close_to 0.9
+      speed_changer.get_property('tempo').must_be_close_to 0.9
     end
   end
 
