@@ -8,7 +8,7 @@ end
 filename = ARGV[0]
 tempo = ARGV[1].to_f
 
-Gst.init []
+Gst.init
 
 pipeline = WaitUp::Pipeline.new(filename, tempo)
 mainloop = GLib::MainLoop.new(GLib::MainContext.default, true)
