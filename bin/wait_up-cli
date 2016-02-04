@@ -25,10 +25,6 @@ bus.signal_connect 'message' do |_bus, message, _ud|
   end
 end
 
-Signal.trap 'INT' do
-  mainloop.quit
-end
-
 pipeline.play
 
 mainloop.run
