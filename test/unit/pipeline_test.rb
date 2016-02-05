@@ -24,8 +24,7 @@ describe WaitUp::Pipeline do
 
     it 'has the correct build-up' do
       iter = sink_bin.iterate_elements
-      # TODO: Make #name return the right value for audiosink
-      iter.map(&:get_name).must_equal ['speed changer', 'postconverter', 'audiosink']
+      iter.map(&:name).must_equal ['speed changer', 'postconverter', 'audiosink']
     end
 
     it 'has the elements all linked up' do
