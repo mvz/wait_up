@@ -6,6 +6,12 @@ This will be a port of playitslowly to Ruby + GirFFI.
 
 ## Usage
 
+Command-line:
+
+    wait_up-cli [file] [tempo]
+
+GUI (just a stub right now):
+
     wait_up
 
 Press Ctrl-Q to quit.
@@ -20,10 +26,11 @@ Wait Up needs some additional software installed in order to work.
 
 ### Debian
 
-The following should work:
+Wait Up needs at least the following:
 
     sudo apt-get install libgirepository1.0-dev gobject-introspection
-    # More to be determined
+
+More to be determined
 
 ### Other OS
 
@@ -41,5 +48,5 @@ If you want to run the tests, you may need to install additional packages:
 
 ## License
 
-Copyright &copy; 2015 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2015&ndash;2016 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.
