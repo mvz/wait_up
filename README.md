@@ -2,7 +2,7 @@
 
 Play sound files slowly so you can follow along.
 
-This will be a port of playitslowly to Ruby + GirFFI.
+This will be a port of playitslowly to Ruby + Ruby-GNOME2.
 
 ## Usage
 
@@ -48,5 +48,5 @@ If you want to run the tests, you may need to install additional packages:
 
 ## License
 
-Copyright &copy; 2015&ndash;2016 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2015&ndash;2017 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.
