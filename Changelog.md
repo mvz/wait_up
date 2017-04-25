@@ -1,6 +1,10 @@
 # Change log
 
-## 0.0.3 2016-04-25
+## 0.1.0 2017-04-25
+
+* Port to Ruby-GNOME2
+
+## 0.0.3 2017-04-25
 
 * Update dependencies
 
