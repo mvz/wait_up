@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = 'wait_up'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
 
   s.summary = 'Play sound files slowly so you can follow along'
 

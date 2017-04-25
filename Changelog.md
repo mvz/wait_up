@@ -1,5 +1,9 @@
 # Change log
 
+## 0.0.3 2016-04-25
+
+* Update dependencies
+
 ## 0.0.2 2016-03-28
 
 * Update dependencies
