@@ -1,4 +1,4 @@
-require 'gir_ffi-gtk3'
+require 'gtk3'
 
 module WaitUp
   # Main Wait Up application class
@@ -24,7 +24,7 @@ module WaitUp
 
     def connect_key_press_event_signal
       @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state[:control_mask]
+        handle_key(evt) if evt.state.control_mask?
         false
       end
     end
@@ -55,7 +55,7 @@ module WaitUp
       @win.add @grid
       @chooser = Gtk::FileChooserButton.new('Hello!', :open)
       @grid.add @chooser
-      @timeline = Gtk::Scale.new_with_range :horizontal, 0.0, 10.0, 0.1
+      @timeline = Gtk::Scale.new :horizontal, 0.0, 10.0, 0.1
       @timeline.hexpand = true
       @grid.add @timeline
       @volume = Gtk::VolumeButton.new
