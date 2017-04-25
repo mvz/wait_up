@@ -1,4 +1,4 @@
-require 'gir_ffi-gst'
+require 'gstreamer'
 
 module WaitUp
   # Wait Up pipeline class
@@ -15,13 +15,14 @@ module WaitUp
       sink_bin.add postconverter
       sink_bin.add speed_changer
 
-      speed_changer.link_many [postconverter, audiosink]
+      speed_changer.link postconverter
+      postconverter.link audiosink
 
-      sink_pad = Gst::GhostPad.new 'sink', speed_changer.iterate_sink_pads.first
+      sink_pad = Gst::GhostPad.new 'sink', speed_changer.sinkpads.first
       sink_bin.add_pad sink_pad
 
-      play_bin.set_property 'audio-sink', GObject::Value.wrap_instance(sink_bin)
-      play_bin.set_state :paused
+      play_bin.audio_sink = sink_bin
+      play_bin.state = :paused
       play_bin.get_state(-1)
     end
 

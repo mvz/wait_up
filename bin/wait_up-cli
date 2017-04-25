@@ -18,9 +18,7 @@ bus.add_signal_watch
 
 bus.signal_connect 'message' do |_bus, message, _ud|
   case message.type
-  when :error
-    mainloop.quit
-  when :eos
+  when Gst::MessageType::ERROR, Gst::MessageType::EOS
     mainloop.quit
   end
 end
