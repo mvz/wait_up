@@ -23,6 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency('gir_ffi', ['~> 0.11.0'])
   s.add_development_dependency('rake', ['~> 12.0.0'])
   s.add_development_dependency('minitest', ['~> 5.5'])
-  s.add_development_dependency('atspi_app_driver', ['0.0.7'])
+  s.add_development_dependency('atspi_app_driver', ['~> 0.1.0'])
   s.add_development_dependency('pry', ['~> 0.10.2'])
 end
