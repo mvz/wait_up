@@ -37,29 +37,41 @@ module WaitUp
     end
 
     def connect_slide_signal
-      @timeline.signal_connect 'format-value' do |_scale, value, _user_data|
+      timeline.signal_connect 'format-value' do |_scale, value, _user_data|
         ">#{value}<"
       end
     end
 
     def connect_file_chooser_signal
-      @chooser.signal_connect 'file-set' do |_widget, _user_data|
-        puts @chooser.filename
+      chooser.signal_connect 'file-set' do |_widget, _user_data|
+        puts chooser.filename
       end
     end
 
     def setup_gui
       @win = Gtk::Window.new :toplevel
-      @grid = Gtk::Grid.new
-      @grid.orientation = :vertical
-      @win.add @grid
-      @chooser = Gtk::FileChooserButton.new('Hello!', :open)
-      @grid.add @chooser
-      @timeline = Gtk::Scale.new :horizontal, 0.0, 10.0, 0.1
-      @timeline.hexpand = true
-      @grid.add @timeline
-      @volume = Gtk::VolumeButton.new
-      @grid.add @volume
+      @win.add grid
+    end
+
+    def grid
+      @grid ||=
+        Gtk::Grid.new.tap do |grid|
+          grid.orientation = :vertical
+          grid.add chooser
+          grid.add timeline
+          grid.add Gtk::VolumeButton.new
+        end
+    end
+
+    def timeline
+      @timeline ||=
+        Gtk::Scale.new(:horizontal, 0.0, 10.0, 0.1).tap do |it|
+          it.hexpand = true
+        end
+    end
+
+    def chooser
+      @chooser ||= Gtk::FileChooserButton.new('Hello!', :open)
     end
   end
 end

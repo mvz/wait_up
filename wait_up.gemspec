@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |s|
   s.name = 'wait_up'
   s.version = '0.1.0'
@@ -13,7 +11,7 @@ Gem::Specification.new do |s|
   s.executables = ['wait_up', 'wait_up-cli']
   s.files =
     Dir['bin/*', '*.md', 'LICENSE', 'Rakefile', 'Gemfile', 'lib/**/*.rb'] &
-      `git ls-files -z`.split("\0")
+    `git ls-files -z`.split("\0")
   s.test_files = Dir['test/**/*.rb']
 
   s.license = 'MIT'
