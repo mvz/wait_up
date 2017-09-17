@@ -11,6 +11,11 @@ Layout/MultilineOperationIndentation:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
+# Test describe blocks can be any size
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+
 # Require lines to fit in pull requests.
 Metrics/LineLength:
   Max: 92
@@ -38,6 +43,10 @@ Style/RedundantReturn:
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
+
+# I like to have symbols always look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
 
 # Accessors are only trivial if they match the ivar name.
 Style/TrivialAccessors:
