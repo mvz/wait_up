@@ -42,5 +42,3 @@ Style/SignalException:
 # Accessors are only trivial if they match the ivar name.
 Style/TrivialAccessors:
   ExactNameMatch: true
-
-inherit_from: .rubocop_todo.yml
