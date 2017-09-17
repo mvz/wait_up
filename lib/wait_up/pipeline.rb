@@ -9,21 +9,10 @@ module WaitUp
       @filename = filename
       @tempo = tempo
 
-      play_bin.set_property 'uri', "file://#{File.absolute_path(filename)}"
+      fill_sink_bin
+      link_elements
 
-      sink_bin.add audiosink
-      sink_bin.add postconverter
-      sink_bin.add speed_changer
-
-      speed_changer.link postconverter
-      postconverter.link audiosink
-
-      sink_pad = Gst::GhostPad.new 'sink', speed_changer.sinkpads.first
-      sink_bin.add_pad sink_pad
-
-      play_bin.audio_sink = sink_bin
-      play_bin.state = :paused
-      play_bin.get_state(-1)
+      set_up_play_bin
     end
 
     def play
@@ -54,6 +43,31 @@ module WaitUp
 
     def preconverter
       @preconverter ||= Gst::ElementFactory.make('audioconvert', 'preconverter')
+    end
+
+    private
+
+    def fill_sink_bin
+      sink_bin.add audiosink
+      sink_bin.add postconverter
+      sink_bin.add speed_changer
+      sink_bin.add_pad speed_changer_ghost_pad
+    end
+
+    def speed_changer_ghost_pad
+      @speed_changer_ghost_pad ||= Gst::GhostPad.new 'sink', speed_changer.sinkpads.first
+    end
+
+    def link_elements
+      speed_changer.link postconverter
+      postconverter.link audiosink
+    end
+
+    def set_up_play_bin
+      play_bin.set_property 'uri', "file://#{File.absolute_path(filename)}"
+      play_bin.audio_sink = sink_bin
+      play_bin.state = :paused
+      play_bin.get_state(-1)
     end
   end
 end
