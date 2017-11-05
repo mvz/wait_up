@@ -1,8 +1,8 @@
 require_relative '../test_helper'
-require 'atspi_app_driver'
+require 'gnome_app_driver'
 
 # Test driver for the Wait Up application.
-class WaitUpDriver < AtspiAppDriver
+class WaitUpDriver < GnomeAppDriver
   def initialize
     super 'wait_up'
   end

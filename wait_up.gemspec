@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('gstreamer', ['~> 3.1.1'])
   s.add_dependency('gtk3', ['~> 3.1.1'])
-  s.add_development_dependency('atspi_app_driver', ['~> 0.1.0'])
+  s.add_development_dependency('gnome_app_driver', ['~> 0.1.1'])
   s.add_development_dependency('minitest', ['~> 5.5'])
   s.add_development_dependency('pry', ['~> 0.11.0'])
   s.add_development_dependency('rake', ['~> 12.0'])
