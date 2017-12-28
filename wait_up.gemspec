@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name = 'wait_up'
   s.version = '0.1.0'
@@ -7,6 +9,8 @@ Gem::Specification.new do |s|
   s.authors = ['Matijs van Zuijlen']
   s.email = ['matijs@matijs.net']
   s.homepage = 'http://www.github.com/mvz/wait_up'
+
+  s.required_ruby_version = '>= 2.3.0'
 
   s.executables = ['wait_up', 'wait_up-cli']
   s.files =

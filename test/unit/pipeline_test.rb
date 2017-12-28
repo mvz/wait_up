@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../test_helper'
 require_relative '../../lib/wait_up/pipeline'
 
@@ -7,7 +9,7 @@ def next_element(element)
   # FIXME: Reduce the number of necessary chained calls here.
   pad = element.srcpads.first
   peer = pad.peer if pad
-  peer.parent if peer
+  peer&.parent
 end
 
 describe WaitUp::Pipeline do
