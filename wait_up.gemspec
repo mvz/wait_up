@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
 
   s.license = 'MIT'
 
-  s.add_dependency('gstreamer', ['~> 3.2.0'])
-  s.add_dependency('gtk3', ['~> 3.2.0'])
+  s.add_dependency('gstreamer', ['~> 3.3.0'])
+  s.add_dependency('gtk3', ['~> 3.3.0'])
   s.add_development_dependency('gnome_app_driver', ['~> 0.2.0'])
   s.add_development_dependency('minitest', ['~> 5.5'])
   s.add_development_dependency('rake', ['~> 12.0'])
