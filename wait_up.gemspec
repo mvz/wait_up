@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency('gtk3', ['~> 3.3.0'])
   s.add_development_dependency('gnome_app_driver', ['~> 0.2.0'])
   s.add_development_dependency('minitest', ['~> 5.5'])
-  s.add_development_dependency('rake', ['~> 12.0'])
+  s.add_development_dependency('rake', ['~> 13.0'])
 end
