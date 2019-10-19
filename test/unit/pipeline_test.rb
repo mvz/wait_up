@@ -21,26 +21,26 @@ describe WaitUp::Pipeline do
     let(:sink_bin) { instance.sink_bin }
 
     it 'returns a Gst::Bin' do
-      sink_bin.must_be_instance_of Gst::Bin
+      _(sink_bin).must_be_instance_of Gst::Bin
     end
 
     it 'has the correct build-up' do
-      sink_bin.map(&:name).must_equal ['speed changer', 'postconverter', 'audiosink']
+      _(sink_bin.map(&:name)).must_equal ['speed changer', 'postconverter', 'audiosink']
     end
 
     it 'has the elements all linked up' do
       sink_bin.each_cons(2) do |src, dst|
-        next_element(src).
+        _(next_element(src)).
           must_equal dst, "Expected #{src.name} to link up to #{dst.name}"
       end
     end
 
     it 'must have the state :paused' do
-      sink_bin.get_state(0)[1].must_equal Gst::State::PAUSED
+      _(sink_bin.get_state(0)[1]).must_equal Gst::State::PAUSED
     end
 
     it 'must be linked up to a source' do
-      sink_bin.sinkpads.first.peer.wont_be_nil
+      _(sink_bin.sinkpads.first.peer).wont_be_nil
     end
   end
 
@@ -48,30 +48,30 @@ describe WaitUp::Pipeline do
     let(:play_bin) { instance.play_bin }
 
     it 'must have the state :paused' do
-      play_bin.get_state(0)[1].must_equal Gst::State::PAUSED
+      _(play_bin.get_state(0)[1]).must_equal Gst::State::PAUSED
     end
 
     it 'has the correct source set up' do
       source = play_bin.source
-      source.uri.must_equal "file://#{File.absolute_path filename}"
+      _(source.uri).must_equal "file://#{File.absolute_path filename}"
     end
   end
 
   describe '#speed_changer' do
     let(:speed_changer) { instance.speed_changer }
     it 'returns a Gst::Element' do
-      speed_changer.must_be_kind_of Gst::Element
+      _(speed_changer).must_be_kind_of Gst::Element
     end
 
     it 'has the correct tempo' do
-      speed_changer.get_property('tempo').must_be_close_to 0.9
+      _(speed_changer.get_property('tempo')).must_be_close_to 0.9
     end
   end
 
   describe '#play' do
     it "sets the play bin's state to :playing" do
       instance.play
-      instance.play_bin.get_state(0)[1].must_equal Gst::State::PLAYING
+      _(instance.play_bin.get_state(0)[1]).must_equal Gst::State::PLAYING
     end
   end
 end

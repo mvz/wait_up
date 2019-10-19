@@ -20,7 +20,7 @@ describe 'The Wait Up application' do
     @driver.press_ctrl_q
 
     status = @driver.cleanup
-    status.exitstatus.must_equal 0
+    _(status.exitstatus).must_equal 0
   end
 
   after do
