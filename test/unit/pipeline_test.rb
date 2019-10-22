@@ -30,8 +30,8 @@ describe WaitUp::Pipeline do
 
     it "has the elements all linked up" do
       sink_bin.each_cons(2) do |src, dst|
-        _(next_element(src)).
-          must_equal dst, "Expected #{src.name} to link up to #{dst.name}"
+        _(next_element(src))
+          .must_equal dst, "Expected #{src.name} to link up to #{dst.name}"
       end
     end
 
