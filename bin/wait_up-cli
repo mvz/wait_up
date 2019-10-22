@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/wait_up/pipeline'
+require_relative "../lib/wait_up/pipeline"
 
 unless ARGV.length == 2
-  warn 'Usage: wait_up-cli [file] [tempo]'
+  warn "Usage: wait_up-cli [file] [tempo]"
   exit 1
 end
 filename = ARGV[0]
@@ -18,7 +18,7 @@ mainloop = GLib::MainLoop.new(GLib::MainContext.default, true)
 bus = pipeline.play_bin.bus
 bus.add_signal_watch
 
-bus.signal_connect 'message' do |_bus, message, _ud|
+bus.signal_connect "message" do |_bus, message, _ud|
   case message.type
   when Gst::MessageType::ERROR, Gst::MessageType::EOS
     mainloop.quit

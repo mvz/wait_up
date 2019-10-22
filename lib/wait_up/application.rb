@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'gtk3'
+require "gtk3"
 
 module WaitUp
   # Main Wait Up application class
@@ -21,11 +21,11 @@ module WaitUp
     end
 
     def connect_destroy_signal
-      @win.signal_connect('destroy') { Gtk.main_quit }
+      @win.signal_connect("destroy") { Gtk.main_quit }
     end
 
     def connect_key_press_event_signal
-      @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
+      @win.signal_connect "key-press-event" do |_wdg, evt, _ud|
         handle_key(evt) if evt.state.control_mask?
         false
       end
@@ -33,19 +33,19 @@ module WaitUp
 
     def handle_key(evt)
       case evt.keyval
-      when 'q'.ord
+      when "q".ord
         @win.destroy
       end
     end
 
     def connect_slide_signal
-      timeline.signal_connect 'format-value' do |_scale, value, _user_data|
+      timeline.signal_connect "format-value" do |_scale, value, _user_data|
         ">#{value}<"
       end
     end
 
     def connect_file_chooser_signal
-      chooser.signal_connect 'file-set' do |_widget, _user_data|
+      chooser.signal_connect "file-set" do |_widget, _user_data|
         puts chooser.filename
       end
     end
@@ -73,7 +73,7 @@ module WaitUp
     end
 
     def chooser
-      @chooser ||= Gtk::FileChooserButton.new('Hello!', :open)
+      @chooser ||= Gtk::FileChooserButton.new("Hello!", :open)
     end
   end
 end
