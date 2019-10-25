@@ -57,6 +57,7 @@ module WaitUp
     end
 
     def speed_changer_ghost_pad
+      p speed_changer.sinkpads.first.name
       @speed_changer_ghost_pad ||= Gst::GhostPad.new "sink", speed_changer.sinkpads.first
     end
 
