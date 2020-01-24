@@ -1,35 +1,35 @@
 ---
-- - :whitelist
+- - :permit
   - MIT
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-23 05:28:27.330309735 Z
-- - :whitelist
+- - :permit
   - LGPL-2.1+
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-23 05:29:14.740010360 Z
-- - :whitelist
+- - :permit
   - LGPLv2+
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-23 05:29:28.091115116 Z
-- - :whitelist
+- - :permit
   - LGPL-3+
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-23 05:29:33.910449159 Z
-- - :whitelist
+- - :permit
   - Ruby's
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-23 05:29:46.512605441 Z
-- - :whitelist
+- - :permit
   - ruby
   - :who: 
     :why: 
