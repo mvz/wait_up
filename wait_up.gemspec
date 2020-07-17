@@ -25,4 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("gnome_app_driver", ["~> 0.2.0"])
   s.add_development_dependency("minitest", ["~> 5.12"])
   s.add_development_dependency("rake", ["~> 13.0"])
+  s.add_development_dependency("rubocop", ["~> 0.88.0"])
+  s.add_development_dependency("rubocop-minitest", ["~> 0.10.0"])
+  s.add_development_dependency("rubocop-performance", ["~> 1.7.0"])
 end
