@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rake/file_list"
+
 Gem::Specification.new do |s|
   s.name = "wait_up"
   s.version = "0.1.0"
@@ -13,10 +15,10 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.5.0"
 
   s.executables = %w(wait_up wait_up-cli)
-  s.files =
-    Dir["bin/*", "*.md", "LICENSE", "Rakefile", "Gemfile", "lib/**/*.rb"] &
-    `git ls-files -z`.split("\0")
-  s.test_files = Dir["test/**/*.rb"]
+  s.files = Rake::FileList["bin/*", "*.md", "LICENSE", "lib/**/*.rb"]
+    .exclude(*File.read(".gitignore").split)
+  s.rdoc_options = ["--main", "README.md"]
+  s.extra_rdoc_files = ["README.md", "Changelog.md"]
 
   s.license = "MIT"
 
