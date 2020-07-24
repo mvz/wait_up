@@ -41,6 +41,9 @@ Metrics/BlockLength:
   Exclude:
     - 'test/**/*'
 
+Performance/StartWith:
+  AutoCorrect: true
+
 # Allow and/or for control flow only
 Style/AndOr:
   EnforcedStyle: conditionals
@@ -75,6 +78,6 @@ Style/StringLiterals:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Accessors are only trivial if they match the ivar name.
+# Accessors are only trivial if they match the ivar name
 Style/TrivialAccessors:
   ExactNameMatch: true
