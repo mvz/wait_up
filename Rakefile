@@ -3,6 +3,7 @@
 require "rake/clean"
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "rake/manifest"
 
 namespace :test do
   Rake::TestTask.new(:unit) do |t|
@@ -21,5 +22,9 @@ namespace :test do
 end
 
 task test: "test:all"
+
+Rake::Manifest::Task.new do |t|
+  t.patterns = ["bin/*", "*.md", "LICENSE", "lib/**/*.rb"]
+end
 
 task default: "test"

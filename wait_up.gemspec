@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rake/file_list"
-
 Gem::Specification.new do |s|
   s.name = "wait_up"
   s.version = "0.1.0"
@@ -15,8 +13,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.5.0"
 
   s.executables = %w(wait_up wait_up-cli)
-  s.files = Rake::FileList["bin/*", "*.md", "LICENSE", "lib/**/*.rb"]
-    .exclude(*File.read(".gitignore").split)
+  s.files = File.read("Manifest.txt").split
   s.rdoc_options = ["--main", "README.md"]
   s.extra_rdoc_files = ["README.md", "Changelog.md"]
 
@@ -24,9 +21,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency("gstreamer", ["~> 3.4.0"])
   s.add_dependency("gtk3", ["~> 3.4.0"])
+
   s.add_development_dependency("gnome_app_driver", ["~> 0.2.0"])
   s.add_development_dependency("minitest", ["~> 5.12"])
   s.add_development_dependency("rake", ["~> 13.0"])
+  s.add_development_dependency("rake-manifest", ["~> 0.1.0"])
   s.add_development_dependency("rubocop", ["~> 0.88.0"])
   s.add_development_dependency("rubocop-minitest", ["~> 0.10.0"])
   s.add_development_dependency("rubocop-packaging", ["~> 0.2.0"])
