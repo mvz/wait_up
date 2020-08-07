@@ -27,4 +27,6 @@ Rake::Manifest::Task.new do |t|
   t.patterns = ["bin/*", "*.md", "LICENSE", "lib/**/*.rb"]
 end
 
-task default: "test"
+task build: "manifest:check"
+
+task default: ["test", "manifest:check"]
