@@ -23,6 +23,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install non-ruby dependencies
       run: |
+        # Ensure all packages can be found
+        sudo apt-get update
         # Needed for gtk3 gem
         sudo apt-get install libgtk-3-dev
         # Needed for gstreamer gem
@@ -52,12 +54,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install non-ruby dependencies
       run: |
+        # Ensure all packages can be found
+        sudo apt-get update
         # Needed for gtk3 gem
         sudo apt-get install libgtk-3-dev
         # Needed for gstreamer gem
         sudo apt-get install libgstreamer1.0-dev
-        # Needed for zoom gem
-        sudo apt-get install libyaz-dev
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
