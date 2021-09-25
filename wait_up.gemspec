@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["matijs@matijs.net"]
   s.homepage = "http://www.github.com/mvz/wait_up"
 
-  s.required_ruby_version = ">= 2.5.0"
+  s.required_ruby_version = ">= 2.7.0"
 
   s.executables = %w[wait_up wait_up-cli]
   s.files = File.read("Manifest.txt").split
