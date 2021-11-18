@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.7.0"
 
+  s.metadata["rubygems_mfa_required"] = "true"
+
   s.executables = %w[wait_up wait_up-cli]
   s.files = File.read("Manifest.txt").split
   s.rdoc_options = ["--main", "README.md"]
