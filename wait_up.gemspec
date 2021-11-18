@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.7.0"
 
+  s.metadata["rubygems_mfa_required"] = "true"
+
   s.executables = %w[wait_up wait_up-cli]
   s.files = File.read("Manifest.txt").split
   s.rdoc_options = ["--main", "README.md"]
@@ -26,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("minitest", ["~> 5.12"])
   s.add_development_dependency("rake", ["~> 13.0"])
   s.add_development_dependency("rake-manifest", "~> 0.2.0")
-  s.add_development_dependency("rubocop", "~> 1.22.0")
+  s.add_development_dependency("rubocop", "~> 1.23.0")
   s.add_development_dependency("rubocop-minitest", "~> 0.16.0")
   s.add_development_dependency("rubocop-packaging", ["~> 0.5.0"])
   s.add_development_dependency("rubocop-performance", "~> 1.12.0")
