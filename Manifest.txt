@@ -6,3 +6,4 @@ LICENSE
 lib/wait_up.rb
 lib/wait_up/application.rb
 lib/wait_up/pipeline.rb
+lib/wait_up/version.rb
