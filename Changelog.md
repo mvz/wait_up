@@ -1,5 +1,10 @@
 # Change log
 
+## 0.1.1 2021-01-21
+
+* Support Rubies 2.7 through 3.1
+* Update dependencies
+
 ## 0.1.0 2017-04-25
 
 * Port to Ruby-GNOME2
