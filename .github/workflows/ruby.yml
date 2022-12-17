@@ -29,6 +29,8 @@ jobs:
           sudo apt-get update
           # Needed for gtk3 gem
           sudo apt-get install libgtk-3-dev
+          # Prevent conflict with libunwind-dev, needed by libgstreamer1.0-dev
+          sudo apt-get remove libunwind-14-dev
           # Needed for gstreamer gem
           sudo apt-get install libgstreamer1.0-dev
           # Needed to set up sound player pipeline
@@ -60,6 +62,8 @@ jobs:
           sudo apt-get update
           # Needed for gtk3 gem
           sudo apt-get install libgtk-3-dev
+          # Prevent conflict with libunwind-dev, needed by libgstreamer1.0-dev
+          sudo apt-get remove libunwind-14-dev
           # Needed for gstreamer gem
           sudo apt-get install libgstreamer1.0-dev
       - name: Set up Ruby
