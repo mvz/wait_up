@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ["--main", "README.md"]
   spec.extra_rdoc_files = ["README.md", "Changelog.md"]
 
-  spec.add_runtime_dependency "gstreamer", "~> 4.0.1"
+  spec.add_runtime_dependency "gstreamer", ">= 4.0.1", "< 4.2.0"
   spec.add_runtime_dependency "gtk3", "~> 4.0.1"
 
   spec.add_development_dependency "gnome_app_driver", "~> 0.3.2"
