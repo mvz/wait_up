@@ -6,7 +6,7 @@ require "gnome_app_driver"
 # Test driver for the Wait Up application.
 class WaitUpDriver < GnomeAppDriver
   def initialize
-    super "wait_up"
+    super("wait_up")
   end
 end
 
