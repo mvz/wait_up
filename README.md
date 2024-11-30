@@ -48,5 +48,5 @@ If you want to run the tests, you may need to install additional packages:
 
 ## License
 
-Copyright &copy; 2015&ndash;2017 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2015&ndash;2024 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.

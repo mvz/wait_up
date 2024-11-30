@@ -1,5 +1,10 @@
 # Change log
 
+## 0.1.2 2021-01-21
+
+* Support Rubies 3.0 through 3.3
+* Update dependencies
+
 ## 0.1.1 2021-01-21
 
 * Support Rubies 2.7 through 3.1
