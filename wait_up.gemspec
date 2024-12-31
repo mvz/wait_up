@@ -10,9 +10,11 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Play sound files slowly so you can follow along"
   spec.homepage = "http://www.github.com/mvz/wait_up"
-  spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
 
+  spec.license = "MIT"
+  spec.required_ruby_version = ">= 3.1.0"
+
+  spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = File.read("Manifest.txt").split
