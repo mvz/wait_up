@@ -38,6 +38,8 @@ jobs:
           sudo apt-get install gstreamer1.0-plugins-base
           sudo apt-get install gstreamer1.0-plugins-good
           sudo apt-get install gstreamer1.0-plugins-bad
+          # Needed for GstAudio-1.0.typelib
+          sudo apt-get install gir1.2-gst-plugins-base-1.0
           # Needed to play sound
           sudo apt-get install pulseaudio
           # Provides xvfb-run
