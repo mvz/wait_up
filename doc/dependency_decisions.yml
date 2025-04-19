@@ -1,43 +1,49 @@
 ---
 - - :permit
   - MIT
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2017-07-23 05:28:27.330309735 Z
 - - :permit
   - LGPL-2.1+
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2017-07-23 05:29:14.740010360 Z
 - - :permit
   - LGPLv2+
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2017-07-23 05:29:28.091115116 Z
 - - :permit
   - LGPL-3+
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2017-07-23 05:29:33.910449159 Z
 - - :permit
   - Ruby's
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2017-07-23 05:29:46.512605441 Z
 - - :permit
   - ruby
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2018-08-31 10:52:40.141856322 Z
 - - :permit
   - Simplified BSD
-  - :who: 
-    :why: 
+  - :who:
+    :why:
     :versions: []
     :when: 2020-09-13 15:16:25.173745661 Z
+- - :permit
+  - LGPL-2.1-or-later
+  - :who:
+    :why:
+    :versions: []
+    :when: 2025-04-19 19:28:44.746544371 Z
