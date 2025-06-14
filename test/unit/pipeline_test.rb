@@ -53,12 +53,14 @@ describe WaitUp::Pipeline do
 
     it "has the correct source set up" do
       source = play_bin.source
+
       _(source.uri).must_equal "file://#{File.absolute_path filename}"
     end
   end
 
   describe "#speed_changer" do
     let(:speed_changer) { instance.speed_changer }
+
     it "returns a Gst::Element" do
       _(speed_changer).must_be_kind_of Gst::Element
     end
@@ -71,6 +73,7 @@ describe WaitUp::Pipeline do
   describe "#play" do
     it "sets the play bin's state to :playing" do
       instance.play
+
       _(instance.play_bin.get_state(0)[1]).must_equal Gst::State::PLAYING
     end
   end
