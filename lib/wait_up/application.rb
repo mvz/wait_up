@@ -67,8 +67,8 @@ module WaitUp
 
     def timeline
       @timeline ||=
-        Gtk::Scale.new(:horizontal, 0.0, 10.0, 0.1).tap do |it|
-          it.hexpand = true
+        Gtk::Scale.new(:horizontal, 0.0, 10.0, 0.1).tap do |scale|
+          scale.hexpand = true
         end
     end
 
