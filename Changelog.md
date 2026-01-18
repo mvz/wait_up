@@ -1,6 +1,17 @@
-# Change log
+# Changelog
 
-## 0.1.2 2021-01-21
+## 0.1.3 2026-01-18
+
+* Support Ruby 3.2 through 4.0 ([#95], [#104] and [#111] by [mvz])
+* Update gstreamer and gtk3 dependencies to ~> 4.3.0 ([#107] by [mvz])
+
+[mvz]: https://github.com/mvz
+[#95]: https://github.com/mvz/wait_up/pull/95
+[#104]: https://github.com/mvz/wait_up/pull/104
+[#107]: https://github.com/mvz/wait_up/pull/107
+[#111]: https://github.com/mvz/wait_up/pull/111
+
+## 0.1.2 2024-11-30
 
 * Support Rubies 3.0 through 3.3
 * Update dependencies
