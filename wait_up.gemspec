@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = ["README.md", "Changelog.md"]
 
   spec.add_dependency "gstreamer", "~> 4.3.0"
-  spec.add_dependency "gtk3", "~> 4.3.0"
+  spec.add_dependency "gtk3", ">= 4.3", "< 4.5"
 
   spec.add_development_dependency "gnome_app_driver", "~> 0.3.2"
   spec.add_development_dependency "minitest", "~> 6.0"
